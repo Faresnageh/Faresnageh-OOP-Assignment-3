@@ -24,6 +24,12 @@ I used an abstract class because it lets me share the common code and force each
 
 **What was the problem?**
 
+Program.cs created four services and called them one by one.
+
 **What did you change?**
 
+I created an EnrollmentFacade class to handle all four services in one method.
+
 **Why did you choose that approach?**
+
+I used the Facade pattern to hide the complex steps and make Program.cs simpler.

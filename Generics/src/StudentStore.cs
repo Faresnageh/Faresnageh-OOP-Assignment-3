@@ -26,11 +26,13 @@
         public void Remove(int id)
         {
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(id);
-            foreach (var student in _students)
+            for (int i = 0; i < _students.Count; i++)
             {
-                if (student.Id == id)
-                    _students.Remove(student);
-                return;
+                if (_students[i].Id == id)
+                {
+                    _students.RemoveAt(i);
+                    return;
+                }
             }
         }
     }

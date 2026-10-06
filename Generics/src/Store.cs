@@ -2,17 +2,20 @@
 {
     public class Store<T> where T : IHasId
     {
-        private List<T> _stores = new List<T>();
+        private Dictionary<int, T> _stores = new Dictionary<int, T>();
 
         public void Add(T item)
         {
             if (item is null)
                 return;
-
-            _stores.Add(item);
+            if (_stores.ContainsKey(item.Id))
+            {
+                throw new Exception("Id already exists");
+            }
+            _stores.Add(item.Id, item);
         }
 
-        public List<T> GetAll()
+        public IReadOnlyDictionary<int, T> GetAll()
         {
             return _stores;
         }
@@ -21,12 +24,10 @@
         {
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(id);
 
-            foreach (var item in _stores)
+            if (_stores.TryGetValue(id, out T? item))
             {
-                if (item.Id == id)
-                    return item;
+                return item;
             }
-
             return default;
         }
 
@@ -34,14 +35,7 @@
         {
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(id);
 
-            for (int i = 0; i < _stores.Count; i++)
-            {
-                if (_stores[i].Id == id)
-                {
-                    _stores.RemoveAt(i);
-                    return;
-                }
-            }
+            _stores.Remove(id);
         }
     }
 }

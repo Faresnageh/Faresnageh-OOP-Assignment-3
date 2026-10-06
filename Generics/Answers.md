@@ -32,3 +32,15 @@ CourseStore works with Course objects
 Because T can be any type and the compiler does not know that T has an Id property
 
 The same error appears in GetById and Remove because both methods use Id
+
+---
+
+## Step 7
+
+`Store<string>` does not compile because `Store<T>` requires `T` to implement `IHasId`
+
+`string` does not implement `IHasId`
+
+## what is the common name for the kind of class you built in Steps 4 and 5?
+
+The common name for the class built in Steps 4 and 5 is a Generic Repository

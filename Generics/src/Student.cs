@@ -1,6 +1,6 @@
 ﻿namespace Generics
 {
-    public class Student
+    public class Student : IHasId
     {
         public Student(string name, int id)
         {

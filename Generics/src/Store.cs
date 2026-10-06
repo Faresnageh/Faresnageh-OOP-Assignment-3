@@ -1,6 +1,6 @@
 ﻿namespace Generics
 {
-    public class Store<T>
+    public class Store<T> where T : IHasId
     {
         private List<T> _stores = new List<T>();
 
